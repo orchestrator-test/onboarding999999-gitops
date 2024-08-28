@@ -1,0 +1,10 @@
+apiVersion: v1
+data:
+  application.properties: "# This is to enable debugging of HTTP request \nquarkus.log.category.\\\"org.apache.http\\\".level=INFO\nquarkus.flyway.migrate-at-start=true\n"
+kind: ConfigMap
+metadata:
+  creationTimestamp: null
+  labels:
+    app: onboarding999999
+    sonataflow.org/workflow-app: onboarding999999
+  name: onboarding999999-props

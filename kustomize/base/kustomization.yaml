@@ -1,0 +1,35 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+resources:
+  - 01-configmap_onboarding999999-props.yaml
+  - 02-configmap_01-onboarding999999-resources.yaml
+  - 03-sonataflow_onboarding999999.yaml
+
+namespace: workflows
+
+configurations:
+- config/image-configuration.yaml
+
+generatorOptions:
+  disableNameSuffixHash: true
+
+secretGenerator:
+  - envs:
+      - secret.properties
+    name: onboarding999999-secret
+configMapGenerator:
+  - envs:
+      - config.properties
+    name: onboarding999999-gitops
+
+# Replace dev profile in SonataFlow instance(s), add image and envFrom
+patches:
+- path: sonataflow-patch.yaml
+  target:
+    kind: SonataFlow
+    name: onboarding999999
+images:
+- name: serverless-workflow-onboarding999999
+  newName: quay.io/rhdh-orchestrator-test/test-infra
+  newTag: fbd49fa077f27aa3f0f913a6706423ad6f4e134a
