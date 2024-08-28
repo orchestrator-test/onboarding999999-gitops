@@ -1,0 +1,18 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: onboarding999999-gitops
+  description: A workflow for onboarding applications to OCP cluster
+  annotations:
+    argocd/app-selector: rht-gitops.com/janus-argocd=onboarding999999-gitops
+    backstage.io/kubernetes-label-selector: 'app=onboarding999999,sonataflow.org/workflow-app=onboarding999999'
+    backstage.io/kubernetes-namespace: workflows
+    backstage.io/kubernetes-id: onboarding999999
+    github.com/project-slug: orchestrator-test/onboarding999999-gitops
+spec:
+  type: workflow-project
+  system: system:default/janus-orchestrator
+  lifecycle: development
+  owner: user:guest
+  dependsOn:
+    - component:onboarding999999

@@ -1,0 +1,23 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: onboarding999999
+  namespace: orchestrator-gitops
+  labels:
+    app-type: bootstrap
+    app: onboarding999999
+    rht-gitops.com/janus-argocd: onboarding999999
+spec:
+  destination:
+    namespace: workflows
+    server: https://kubernetes.default.svc
+  project: orchestrator-gitops
+  source:
+    path: argocd
+    repoURL: git@github.com:orchestrator-test/onboarding999999.git
+    targetRevision: HEAD
+  syncPolicy:
+    automated:
+      # Keep history of pipeline runs
+      prune: false
+      selfHeal: true

@@ -1,0 +1,29 @@
+apiVersion: v1
+kind: Secret
+metadata:
+  labels:
+    argocd.argoproj.io/secret-type: repository
+  name: onboarding999999-repo
+  namespace: orchestrator-gitops
+stringData:
+  name: onboarding999999
+  project: orchestrator-gitops
+  type: git
+  url: git@github.com:orchestrator-test/onboarding999999.git
+data:
+  sshPrivateKey: __REPLACE_SSH_PRIVATE_KEY__
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  labels:
+    argocd.argoproj.io/secret-type: repository
+  name: onboarding999999-gitops-repo
+  namespace: orchestrator-gitops
+stringData:
+  name: onboarding999999-gitops
+  project: orchestrator-gitops
+  type: git
+  url: git@github.com:orchestrator-test/onboarding999999-gitops.git
+data:
+  sshPrivateKey: __REPLACE_SSH_PRIVATE_KEY__
